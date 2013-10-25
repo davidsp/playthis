@@ -6,7 +6,7 @@ var SampleView = Backbone.View.extend({
 
 	events: {
 		'click': function() {
-			alert('Sample Event');
+			alert('Sample Evento');
 		}
 	},
 
