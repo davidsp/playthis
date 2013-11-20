@@ -1,0 +1,167 @@
+[
+    {
+        "id": 0,
+        "isFavorited": false,
+        "picture": "http://placehold.it/32x32",
+        "title": "Katheryn Taylor",
+        "url": "----",
+        "about": "Minim dolore tempor adipisicing dolor reprehenderit irure. Aliqua consectetur eiusmod amet deserunt fugiat ipsum. Irure et cupidatat id cupidatat quis nostrud fugiat incididunt consectetur adipisicing. Sunt labore nostrud ea anim anim commodo veniam sunt.\r\n",
+        "registered": "2012-02-02T09:16:23 -01:00",
+        "tags": [
+            "in",
+            "commodo",
+            "velit",
+            "adipisicing",
+            "esse",
+            "nulla",
+            "proident"
+        ],
+        "friends": [
+            {
+                "id": 0,
+                "name": "Sofia Roman"
+            },
+            {
+                "id": 1,
+                "name": "Emilia Goodwin"
+            },
+            {
+                "id": 2,
+                "name": "Carly Cline"
+            }
+        ],
+        "randomArrayItem": "cherry"
+    },
+    {
+        "id": 1,
+        "isFavorited": false,
+        "picture": "http://placehold.it/32x32",
+        "title": "Stafford Ramirez",
+        "url": "----",
+        "about": "Nostrud qui irure anim proident irure do adipisicing consectetur. In incididunt dolor ea ea consequat aliquip duis eiusmod irure magna cillum occaecat ea pariatur. Labore sint quis fugiat deserunt nulla. Sunt ipsum adipisicing incididunt laboris ullamco ullamco in sunt sunt. Cillum irure irure fugiat quis nostrud. Dolor cillum commodo sint esse laborum esse Lorem eiusmod laborum nulla elit.\r\n",
+        "registered": "1996-07-05T23:53:24 -02:00",
+        "tags": [
+            "esse",
+            "aliquip",
+            "velit",
+            "adipisicing",
+            "ut",
+            "eiusmod",
+            "et"
+        ],
+        "friends": [
+            {
+                "id": 0,
+                "name": "Leon Kirby"
+            },
+            {
+                "id": 1,
+                "name": "Ferguson Farley"
+            },
+            {
+                "id": 2,
+                "name": "Jewell Cardenas"
+            }
+        ],
+        "randomArrayItem": "lemon"
+    },
+    {
+        "id": 2,
+        "isFavorited": true,
+        "picture": "http://placehold.it/32x32",
+        "title": "Gay Sharpe",
+        "url": "----",
+        "about": "Nulla aliquip eu velit labore commodo enim enim amet. Et qui aliquip eiusmod aliquip sint eu adipisicing eu deserunt dolor nostrud. Sunt consectetur duis consectetur labore laboris qui aliqua irure Lorem ipsum deserunt sit. Cillum sint enim nostrud anim labore anim incididunt aliquip.\r\n",
+        "registered": "1993-06-03T22:40:26 -02:00",
+        "tags": [
+            "exercitation",
+            "consequat",
+            "sint",
+            "id",
+            "sunt",
+            "dolor",
+            "dolore"
+        ],
+        "friends": [
+            {
+                "id": 0,
+                "name": "Selma Ratliff"
+            },
+            {
+                "id": 1,
+                "name": "Townsend Johnston"
+            },
+            {
+                "id": 2,
+                "name": "Fry Holder"
+            }
+        ],
+        "randomArrayItem": "apple"
+    },
+    {
+        "id": 3,
+        "isFavorited": false,
+        "picture": "http://placehold.it/32x32",
+        "title": "Marla Dickerson",
+        "url": "----",
+        "about": "Do proident reprehenderit cupidatat minim aute irure in. Tempor adipisicing velit officia do aute. Do elit laborum voluptate adipisicing reprehenderit sit velit. Occaecat nulla ad ad eiusmod anim sit. Est adipisicing est commodo magna laborum Lorem deserunt cupidatat ad est elit.\r\n",
+        "registered": "2012-06-10T15:46:58 -02:00",
+        "tags": [
+            "fugiat",
+            "nisi",
+            "sunt",
+            "amet",
+            "Lorem",
+            "commodo",
+            "culpa"
+        ],
+        "friends": [
+            {
+                "id": 0,
+                "name": "Knox Hobbs"
+            },
+            {
+                "id": 1,
+                "name": "Sims Moses"
+            },
+            {
+                "id": 2,
+                "name": "Enid Miranda"
+            }
+        ],
+        "randomArrayItem": "cherry"
+    },
+    {
+        "id": 4,
+        "isFavorited": false,
+        "picture": "http://placehold.it/32x32",
+        "title": "Hodges Hurst",
+        "url": "----",
+        "about": "Quis qui veniam non esse occaecat aliquip aliquip ullamco. Id ullamco excepteur reprehenderit Lorem. Nostrud eiusmod dolore fugiat occaecat sunt non sint nulla quis esse id id.\r\n",
+        "registered": "2007-11-07T01:00:12 -01:00",
+        "tags": [
+            "esse",
+            "voluptate",
+            "mollit",
+            "sint",
+            "aute",
+            "tempor",
+            "amet"
+        ],
+        "friends": [
+            {
+                "id": 0,
+                "name": "Rosanne Tate"
+            },
+            {
+                "id": 1,
+                "name": "Nanette Peterson"
+            },
+            {
+                "id": 2,
+                "name": "Miranda Ray"
+            }
+        ],
+        "randomArrayItem": "apple"
+    }
+]
