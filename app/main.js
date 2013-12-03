@@ -1,14 +1,13 @@
 module.exports = $(function() {
 
+	var playlistModel = require('models/m-playlist');
+	var playlistView = require('views/v-playlist');
 
-	var SampleModel = require('models/SampleModel');
-	var SampleView = require('views/SampleView');
-
-	var sminstance = new SampleModel();
-	var svinstance = new SampleView({
+	var sminstance = new playlistModel();
+	var svinstance = new playlistView({
 		model: sminstance
 	});
 
-	// Write App core here
+	//core here
 
 });

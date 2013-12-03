@@ -9,130 +9,20 @@
 6 verbose config file d:\soft\node\etc\npmrc
 7 verbose config file d:\soft\node\node_modules\npm\npmrc
 8 verbose read json d:\devel\playthis\package.json
-9 warn package.json Project_Name@1.5.4 No README.md file found!
-10 verbose readDependencies using package.json deps
-11 verbose install where, deps [ 'd:\\devel\\playthis',
-11 verbose install   [ 'javascript-brunch',
-11 verbose install     'css-brunch',
-11 verbose install     'uglify-js-brunch',
-11 verbose install     'clean-css-brunch',
-11 verbose install     'less-brunch',
-11 verbose install     'underscore-brunch',
-11 verbose install     'underscore-template-brunch' ] ]
-12 verbose from cache d:\devel\playthis\package.json
-13 info preinstall Project_Name@1.5.4
-14 verbose read json d:\devel\playthis\node_modules\clean-css-brunch\package.json
-15 verbose read json d:\devel\playthis\node_modules\coffee-script-brunch\package.json
-16 verbose read json d:\devel\playthis\node_modules\css-brunch\package.json
-17 verbose read json d:\devel\playthis\node_modules\handlebars-brunch\package.json
-18 verbose read json d:\devel\playthis\node_modules\javascript-brunch\package.json
-19 verbose read json d:\devel\playthis\node_modules\less\package.json
-20 verbose read json d:\devel\playthis\node_modules\less-brunch\package.json
-21 verbose read json d:\devel\playthis\node_modules\sinon\package.json
-22 verbose read json d:\devel\playthis\node_modules\sinon-chai\package.json
-23 verbose read json d:\devel\playthis\node_modules\stylus-brunch\package.json
-24 verbose read json d:\devel\playthis\node_modules\uglify-js-brunch\package.json
-25 verbose read json d:\devel\playthis\node_modules\underscore\package.json
-26 verbose read json d:\devel\playthis\node_modules\underscore-brunch\package.json
-27 verbose read json d:\devel\playthis\node_modules\underscore-template-brunch\package.json
-28 verbose from cache d:\devel\playthis\package.json
-29 verbose readDependencies using package.json deps
-30 verbose read json d:\devel\playthis\node_modules\.bin\package.json
-31 verbose from cache d:\devel\playthis\node_modules\clean-css-brunch\package.json
-32 verbose from cache d:\devel\playthis\node_modules\coffee-script-brunch\package.json
-33 verbose from cache d:\devel\playthis\node_modules\css-brunch\package.json
-34 verbose from cache d:\devel\playthis\node_modules\handlebars-brunch\package.json
-35 verbose from cache d:\devel\playthis\node_modules\javascript-brunch\package.json
-36 verbose from cache d:\devel\playthis\node_modules\less\package.json
-37 verbose from cache d:\devel\playthis\node_modules\less-brunch\package.json
-38 verbose from cache d:\devel\playthis\node_modules\sinon\package.json
-39 verbose from cache d:\devel\playthis\node_modules\sinon-chai\package.json
-40 verbose from cache d:\devel\playthis\node_modules\stylus-brunch\package.json
-41 verbose from cache d:\devel\playthis\node_modules\uglify-js-brunch\package.json
-42 verbose from cache d:\devel\playthis\node_modules\underscore\package.json
-43 verbose from cache d:\devel\playthis\node_modules\underscore-brunch\package.json
-44 verbose from cache d:\devel\playthis\node_modules\underscore-template-brunch\package.json
-45 verbose already installed skipping javascript-brunch@>= 1.0 < 1.6 d:\devel\playthis
-46 verbose already installed skipping css-brunch@>= 1.0 < 1.6 d:\devel\playthis
-47 verbose already installed skipping uglify-js-brunch@>= 1.0 < 1.6 d:\devel\playthis
-48 verbose already installed skipping clean-css-brunch@>= 1.0 < 1.6 d:\devel\playthis
-49 verbose already installed skipping less-brunch@1.5.1 d:\devel\playthis
-50 verbose already installed skipping underscore-brunch@1.4.0 d:\devel\playthis
-51 verbose already installed skipping underscore-template-brunch@1.4.4 d:\devel\playthis
-52 silly resolved []
-53 info build d:\devel\playthis
-54 verbose from cache d:\devel\playthis\package.json
-55 verbose linkStuff [ false, false, false, 'd:\\devel' ]
-56 info linkStuff Project_Name@1.5.4
-57 verbose linkBins Project_Name@1.5.4
-58 verbose linkMans Project_Name@1.5.4
-59 verbose rebuildBundles Project_Name@1.5.4
-60 verbose rebuildBundles [ '.bin',
-60 verbose rebuildBundles   'clean-css-brunch',
-60 verbose rebuildBundles   'coffee-script-brunch',
-60 verbose rebuildBundles   'css-brunch',
-60 verbose rebuildBundles   'handlebars-brunch',
-60 verbose rebuildBundles   'javascript-brunch',
-60 verbose rebuildBundles   'less',
-60 verbose rebuildBundles   'less-brunch',
-60 verbose rebuildBundles   'sinon',
-60 verbose rebuildBundles   'sinon-chai',
-60 verbose rebuildBundles   'stylus-brunch',
-60 verbose rebuildBundles   'uglify-js-brunch',
-60 verbose rebuildBundles   'underscore',
-60 verbose rebuildBundles   'underscore-brunch',
-60 verbose rebuildBundles   'underscore-template-brunch' ]
-61 verbose rebuild bundle d:\devel\playthis\node_modules\coffee-script-brunch
-62 info build d:\devel\playthis\node_modules\coffee-script-brunch
-63 verbose from cache d:\devel\playthis\node_modules\coffee-script-brunch\package.json
-64 info preinstall coffee-script-brunch@1.5.0
-65 verbose linkStuff [ false, false, false, 'd:\\devel\\playthis\\node_modules' ]
-66 info linkStuff coffee-script-brunch@1.5.0
-67 verbose linkBins coffee-script-brunch@1.5.0
-68 verbose linkMans coffee-script-brunch@1.5.0
-69 verbose rebuildBundles coffee-script-brunch@1.5.0
-70 verbose rebuildBundles [ 'coffee-script' ]
-71 info install coffee-script-brunch@1.5.0
-72 info postinstall coffee-script-brunch@1.5.0
-73 verbose unsafe-perm in lifecycle true
-74 silly exec cmd "/c" "node setup.js postinstall"
-75 silly cmd,/c,node setup.js postinstall,d:\devel\playthis\node_modules\coffee-script-brunch spawning
-76 verbose rebuild bundle d:\devel\playthis\node_modules\handlebars-brunch
-77 info build d:\devel\playthis\node_modules\handlebars-brunch
-78 verbose from cache d:\devel\playthis\node_modules\handlebars-brunch\package.json
-79 info preinstall handlebars-brunch@1.5.0
-80 verbose linkStuff [ false, false, false, 'd:\\devel\\playthis\\node_modules' ]
-81 info linkStuff handlebars-brunch@1.5.0
-82 verbose linkBins handlebars-brunch@1.5.0
-83 verbose linkMans handlebars-brunch@1.5.0
-84 verbose rebuildBundles handlebars-brunch@1.5.0
-85 verbose rebuildBundles [ 'coffee-script', 'handlebars' ]
-86 info install handlebars-brunch@1.5.0
-87 info postinstall handlebars-brunch@1.5.0
-88 verbose rebuild bundle d:\devel\playthis\node_modules\less
-89 info build d:\devel\playthis\node_modules\less
-90 verbose from cache d:\devel\playthis\node_modules\less\package.json
-91 info preinstall less@1.3.3
-92 verbose linkStuff [ false, false, false, 'd:\\devel\\playthis\\node_modules' ]
-93 info linkStuff less@1.3.3
-94 verbose linkBins less@1.3.3
-95 verbose link bins [ { lessc: './bin/lessc' },
-95 verbose link bins   'd:\\devel\\playthis\\node_modules\\.bin',
-95 verbose link bins   false ]
-96 verbose linkMans less@1.3.3
-97 verbose rebuildBundles less@1.3.3
-98 verbose rebuildBundles [ '.bin', 'ycssmin' ]
-99 error Error: ENOENT, chmod 'd:\devel\playthis\node_modules\less\bin\lessc'
-100 error If you need help, you may report this log at:
-100 error     <http://github.com/isaacs/npm/issues>
-100 error or email it to:
-100 error     <npm-@googlegroups.com>
-101 error System Windows_NT 6.1.7601
-102 error command "d:\\soft\\node\\\\node.exe" "d:\\soft\\node\\node_modules\\npm\\bin\\npm-cli.js" "install"
-103 error cwd d:\devel\playthis
-104 error node -v v0.8.6
-105 error npm -v 1.1.48
-106 error path d:\devel\playthis\node_modules\less\bin\lessc
-107 error code ENOENT
-108 error errno 34
-109 verbose exit [ 34, true ]
+9 error install Couldn't read dependencies
+10 error Failed to parse json
+10 error Unexpected token /
+11 error File: d:\devel\playthis\package.json
+12 error Failed to parse package.json data.
+12 error package.json must be actual JSON, not just JavaScript.
+12 error
+12 error This is not a bug in npm.
+12 error Tell the package author to fix their package.json file. JSON.parse
+13 error System Windows_NT 6.1.7601
+14 error command "d:\\soft\\node\\\\node.exe" "d:\\soft\\node\\node_modules\\npm\\bin\\npm-cli.js" "install"
+15 error cwd d:\devel\playthis
+16 error node -v v0.8.6
+17 error npm -v 1.1.48
+18 error file d:\devel\playthis\package.json
+19 error code EJSONPARSE
+20 verbose exit [ 1, true ]
