@@ -1,5 +1,6 @@
 module.exports = $(function() {
 
+
 	var SampleModel = require('models/SampleModel');
 	var SampleView = require('views/SampleView');
 
