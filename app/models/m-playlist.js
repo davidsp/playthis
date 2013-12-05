@@ -1,3 +1,5 @@
+var	Utils = require('modules/utils.js');
+
 var Playlist = Backbone.Model.extend({
 	
 	defaults: {
@@ -6,25 +8,10 @@ var Playlist = Backbone.Model.extend({
 	},
 	
 	initialize: function(){
-		this.loadPlaylist();
+//		var data = Utils.loadJson();
+		console.log(data);
 	},
 	
-	loadPlaylist: function(){
-		$.ajax({
-			url: '/playdata/playlist.json',
-			type: 'POST',
-			dataType: 'xml/html/script/json/jsonp',
-			// data: {param1: 'value1'},
-			complete: function(xhr, textStatus) {
-			},
-			success: function(data, textStatus, xhr) {
-				console.log(data);
-			},
-			error: function(xhr, textStatus, errorThrown) {
-			}
-		});
-		
-	}
 });
 
 module.exports = Playlist;
