@@ -1,4 +1,6 @@
 var list = require('views/v-playlist');
+var Utils = require('modules/utils');
+
 
 var playListRouter = Backbone.Router.extend({
 
@@ -7,7 +9,7 @@ var playListRouter = Backbone.Router.extend({
 	    "": "basicInit",
 	     
 		//takes the query and does a youtube search
-		"list/:query": "showList",
+		"list/:query": "loadList",
 
 		//takes the id of the video and returns the json data of the video itself
 		"video/:id": "showVideo",
@@ -19,19 +21,18 @@ var playListRouter = Backbone.Router.extend({
 		console.log('basic');
 	},
 
-	showList: function(query){
-		new list({
-			term:query
-		});
+	loadList: function(query){
+		Utils.loadJson(query,'list');		
 	},
 
 	showVideo: function(id) {
-		console.log('we show ' + id);
+		Utils.loadJson(query,'video');
 	},
 
 	showAbout: function(){
 		console.log('we show about');
 	}
 });
+
 app = new playListRouter();
 module.exports = playListRouter;

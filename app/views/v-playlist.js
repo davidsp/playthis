@@ -1,5 +1,6 @@
 var	VideoItem = require('models/m-video');
 
+
 var playListView = Backbone.View.extend({
 
 	el: 'body',
@@ -9,23 +10,13 @@ var playListView = Backbone.View.extend({
 			alert('Sample Evento');
 		}
 	},
-	initialize: function(term) {
-		this.term = term;
-		console.log(term);
-//		this.searchTerm = this.model.get('searchTerm');
-		// this.loadData();
-	},
-	loadData: function() {
+	initialize: function() {
+		console.log(this.model);
 		this.render();
 	},
 	render: function() {
-		//create the video
-		var vid = new VideoItem({
-			title : 'titulo desde la vista' 
-		});
-		//var html = this.template();
 		this.$el.html(this.template({
-			url: this.searchTerm
+			url: this.term
 		}));
 		return this;		
 	}
