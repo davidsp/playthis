@@ -1,3 +1,5 @@
+var list = require('views/v-playlist');
+
 var playListRouter = Backbone.Router.extend({
 
 	routes: {
@@ -18,7 +20,9 @@ var playListRouter = Backbone.Router.extend({
 	},
 
 	showList: function(query){
-		console.log("we show " + query);
+		new list({
+			term:query
+		});
 	},
 
 	showVideo: function(id) {

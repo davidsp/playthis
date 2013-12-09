@@ -1,19 +1,19 @@
 var	VideoItem = require('models/m-video');
 
 var playListView = Backbone.View.extend({
+
 	el: 'body',
-
 	template: require('views/templates/playlist'),
-
 	events: {
 		'click': function() {
 			alert('Sample Evento');
 		}
 	},
-
-	initialize: function() {
-		this.searchTerm = this.model.get('searchTerm');
-		this.loadData();
+	initialize: function(term) {
+		this.term = term;
+		console.log(term);
+//		this.searchTerm = this.model.get('searchTerm');
+		// this.loadData();
 	},
 	loadData: function() {
 		this.render();

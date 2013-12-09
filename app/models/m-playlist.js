@@ -3,10 +3,11 @@ var Playlist = Backbone.Model.extend({
 	
 	defaults: {
 		searchTerm: 'spring',
-		url: 'http://www.youtube.com'
+		url: 'https://gdata.youtube.com/feeds/api/videos?q=surfing&v=2&alt=jsonc'
 	},
 	
 	initialize: function(){
+		//populateUrl();
 //		var data = Utils.loadJson();
 	},
 	
