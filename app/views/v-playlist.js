@@ -23,7 +23,6 @@ var playListView = Backbone.View.extend({
 		var vid = new VideoItem({
 			title : 'titulo desde la vista' 
 		});
-		console.log(vid.get('title'));
 		//var html = this.template();
 		this.$el.html(this.template({
 			url: this.searchTerm

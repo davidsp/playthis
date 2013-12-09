@@ -1,4 +1,3 @@
-var	Utils = require('modules/utils.js');
 
 var Playlist = Backbone.Model.extend({
 	
@@ -9,7 +8,6 @@ var Playlist = Backbone.Model.extend({
 	
 	initialize: function(){
 //		var data = Utils.loadJson();
-		console.log(data);
 	},
 	
 });
