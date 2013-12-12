@@ -6,9 +6,6 @@ var Playlist = Backbone.Model.extend({
 	},
 	
 	initialize: function(){
-		console.log('el modelo');
-		//populateUrl();
-//		var data = Utils.loadJson();
 	},
 	
 });
