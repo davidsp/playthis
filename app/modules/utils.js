@@ -1,4 +1,5 @@
 var list = require('views/playlist_view');
+var video = require('views/video_view');
 
 var utils = (function() {
 	//XXX?: destruct previous view
@@ -6,7 +7,8 @@ var utils = (function() {
     function createView(data,view,term) {
     	if(view === 'video'){
 			new video({
-				model: data
+				model: data,
+				term: term
 			});
 		}
     	if(view === 'list'){

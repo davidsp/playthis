@@ -3,7 +3,7 @@ var	VideoItem = require('models/m-video');
 
 
 var PlayListView = Backbone.View.extend({
-	el: 'body',
+	el: '#info',
 	template: require('views/templates/playlist'),
 	events: {
 		'click .video-link' : 'loadVideo'
@@ -12,7 +12,6 @@ var PlayListView = Backbone.View.extend({
 		this.term = this.options.term;
 		this.model = this.options.model;
 		this.results = this.model.data.items;
-		console.log(this.results);
 		this.render();
 	},
 	render: function() {

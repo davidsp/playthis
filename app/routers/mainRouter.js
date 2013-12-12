@@ -21,14 +21,17 @@ var playListRouter = Backbone.Router.extend({
 	},
 
 	loadList: function(query){
+		new BasicView({});
 		Utils.loadJson(query,'list');		
 	},
 
 	showVideo: function(id) {
+		new BasicView({});
 		Utils.loadJson(id,'video');
 	},
 
 	showAbout: function(){
+		new BasicView({});
 		console.log('we show about');
 	}
 });
