@@ -1,3 +1,2 @@
-<h1><%=info.title%></h1>
-<video src=""></video>
-<iframe src="<%=info.content[5]%>" frameborder="0"></iframe>
+<h2><%=info.title%></h2>
+<iframe id="video-player" src="<%=info.content[5]%>" frameborder="0"></iframe>
