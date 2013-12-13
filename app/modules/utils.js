@@ -25,7 +25,7 @@ var utils = (function() {
 
 	function loadJson(term, view){
 		$.ajax({
-			url: 'https://gdata.youtube.com/feeds/api/videos?q=' + term + '&v=2&alt=jsonc',
+			url: 'https://gdata.youtube.com/feeds/api/videos?q=' + term + '&v=2&alt=jsonc&max-results=24',
 			type: 'POST',
 			dataType: 'jsonp',
 			complete: function(xhr, textStatus) {
