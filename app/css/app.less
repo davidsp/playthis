@@ -2,13 +2,53 @@ body {
 	background: #fff;
 }
 
-#video-player{
-	width: 100%;
-	min-height: 300px;
-
+*{
 }
-h1{
+#video-player{
+	width: 600px;
+	height: 480px;
+	margin: 0 auto;
+	max-width:100%;
+	iframe{
+		height: 100%;
+		width: 100%;
+	}
+}
+h1,
+h3
+{
 	text-align: center;
 	padding: 20px;
 	font-size: 2em;
+}
+h3{
+	font-size: 1.4em;
+}
+.list-items{
+	max-width:90%;
+	border-left: 1px solid #ccc;
+		border-top: 1px solid #ccc;
+	&>div{
+		min-height:300px;
+		margin-bottom: 0;
+		line-height: 1.1;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		box-sizing:border-box;
+		padding: 0;
+		&:first-child{
+			border-left: none;
+		}
+		p{
+			margin-bottom: 10px;
+			padding: 4px;
+			img{
+				min-width:100%;
+				height: auto;
+			}
+			&.txt{
+				padding: 0 10px;
+			}
+		}
+	}
 }
