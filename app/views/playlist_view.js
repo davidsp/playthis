@@ -1,7 +1,5 @@
 var	VideoItem = require('models/m-video');
 
-
-
 var PlayListView = Backbone.View.extend({
 	el: '#info',
 	template: require('views/templates/playlist'),
@@ -12,11 +10,12 @@ var PlayListView = Backbone.View.extend({
 		this.term = this.options.term;
 		this.model = this.options.model;
 		this.results = this.model.data.items;
+		this.data = this.model.data;
 		this.render();
 	},
 	render: function() {
 		this.$el.html(this.template({
-			searchResults: this.results,
+			data: this.data,
 			url: this.term
 		}));
 		return this;		

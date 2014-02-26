@@ -14,7 +14,6 @@ var PlayListView = Backbone.View.extend({
 		this.render();
 	},
 	render: function() {
-		console.log(this.result);
 		this.$el.html(this.template({
 			info:  this.result
 		}));

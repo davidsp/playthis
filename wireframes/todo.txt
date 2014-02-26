@@ -1,0 +1,4 @@
+- Paginate results 
+	<< < 1-2-3-4-5.. 9999-10000 > >>
+- back to search results
+- amount of items per page (take into account the current page)	
