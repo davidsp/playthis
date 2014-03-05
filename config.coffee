@@ -15,11 +15,12 @@ exports.config =
         ]
 
     stylesheets:
+      defaultExtension: 'less',
       joinTo:
-        'css/app.css': /^(app|vendor)/
-      order:
-        before: []
-        after: []
-
+        'css/main.css': /^(app|vendor)/
+      order: {
+        before: ['vendor/styles/bootstrap/bootstrap.less'],
+        after: ['vendor/styles/helpers.css']
+      }
     templates:
       joinTo: 'js/app.js'
