@@ -4,7 +4,7 @@
     <% 
     var results = data.items;
     for( var i in results) { %>
-	    <div class="large-2 medium-4 small-12 columns">
+	    <div class="col-md-3">
 	        <p><a href="#video/<%=results[i].id%>" class="video-link" data-id="results[i].id"><img src="<%= results[i].thumbnail.hqDefault %>"></a></p>
 	        <p><a href="#video/<%=results[i].id%>" class="video-link" data-id="results[i].id"><%= results[i].title %></a></p>
 	    </div>
