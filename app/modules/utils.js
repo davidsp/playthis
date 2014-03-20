@@ -1,9 +1,7 @@
-var list = require('views/playlist_view');
-var video = require('views/video_view');
+var list = require('views/playlist-view');
+var video = require('views/video-view');
 
 var utils = (function() {
-	//XXX?: destruct previous view
-
     function createView(data,view,term) {
     	if(view === 'video'){
 			new video({
@@ -17,10 +15,6 @@ var utils = (function() {
 				term: term
 			});
 		}
-    }
-
-    function extendModel(obj){
-
     }
 
 	function loadJson(term, view){

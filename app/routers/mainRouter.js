@@ -1,5 +1,5 @@
 var Utils = require('modules/utils');
-var BasicView = require('views/basic_view');
+var BasicView = require('views/basic-view');
 
 var playListRouter = Backbone.Router.extend({
 

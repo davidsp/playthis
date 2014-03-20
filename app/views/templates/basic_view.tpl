@@ -1,6 +1,6 @@
-<form id="search-form" class="row-fluid form-inline">
-    <div class="form-group col-md-4 col-md-offset-4">
-		<input type="text" id="input-search" class="span12" placeholder="Search for something">
-		<button class="btn btn-small">GO</button>
+<form id="search-form" class="row form-inline">
+    <div class="form-group col-md-8 col-md-offset-2 input-group">
+		<input type="text" id="input-search" class="form-control" placeholder="Search for something">
+		<button class="btn btn-primary btn-small span12">GO</button>
     </div>        
 </form>
