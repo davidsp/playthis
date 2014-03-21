@@ -15,7 +15,7 @@ var BasicView = Backbone.View.extend({
 	},
 	searchVideos: function(e) {
 		var value = $(e.target).find('input').val();
-        app.navigate("list/" + value, true);
+        app.navigate("list/" + value + '/1', true);
 		e.preventDefault();
 	}
 });

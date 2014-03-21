@@ -16,16 +16,30 @@ var utils = (function() {
 			});
 		}
     }
-
-	function loadJson(term, view){
+    function loadJson(term, view){
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/search?q=' + term + '&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet',
+            type: 'POST',
+            dataType: 'jsonp',
+            complete: function(xhr, textStatus) {
+            },
+            success: function(data, textStatus, xhr) {
+                createView(data,view,term);
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                return false;
+            }
+        });
+    }
+	function loadVideo(term, view){
 		$.ajax({
-			url: 'https://gdata.youtube.com/feeds/api/videos?q=' + term + '&v=2&alt=jsonc&max-results=24',
+			url: 'https://www.googleapis.com/youtube/v3/video?q=' + term + '&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet',
 			type: 'POST',
 			dataType: 'jsonp',
 			complete: function(xhr, textStatus) {
 			},
 			success: function(data, textStatus, xhr) {
-				createView(data, view,term);
+				createView(data,view,term);
 			},
 			error: function(xhr, textStatus, errorThrown) {
 				return false;
@@ -33,7 +47,8 @@ var utils = (function() {
 		});
 	}
     return {
-        loadJson: loadJson
+        loadJson: loadJson,
+        loadVideo: loadVideo
     };
 })();
 

@@ -2,8 +2,7 @@
 var playListView = Backbone.View.extend({
 	el: 'body',
 	template: require('views/templates/playlist'),
-	events: {}
-	},
+	events: {},
 	initialize: function() {
 		this.render();
 	},
