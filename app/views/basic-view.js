@@ -9,13 +9,12 @@ var BasicView = Backbone.View.extend({
 		this.render();
 	},
 	render: function() {
-		this.$el.html(this.template({
-		}));
+		this.$el.html(this.template({}));
 		return this;		
 	},
 	searchVideos: function(e) {
 		var value = $(e.target).find('input').val();
-        app.navigate("list/" + value + '/1', true);
+        app.navigate("list/" + value, true);
 		e.preventDefault();
 	}
 });

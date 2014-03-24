@@ -15,10 +15,12 @@ var utils = (function() {
 				term: term
 			});
 		}
-    }
-    function loadJson(term, view){
+    }   
+    function loadJson(term, view, paged){
+        var url = 'https://www.googleapis.com/youtube/v3/search?q=' + term + '&type=video&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet';
+        if(paged) url += '&pageToken=' + paged;
         $.ajax({
-            url: 'https://www.googleapis.com/youtube/v3/search?q=' + term + '&type=video&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet',
+            url: url ,
             type: 'POST',
             dataType: 'jsonp',
             complete: function(xhr, textStatus) {
@@ -32,8 +34,6 @@ var utils = (function() {
         });
     }
 	function loadVideo(term, view){
-        console.log(term);
-        console.log(view);
 		$.ajax({
 			url: 'https://www.googleapis.com/youtube/v3/videos?id=' + term + '&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet',
 			type: 'POST',

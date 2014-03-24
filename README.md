@@ -1,4 +1,4 @@
 playthis
 ========
 
-A dead simple no-models backbone example to search and play videos from youtube.
+A dead simple backbone example to search and play videos from youtube.

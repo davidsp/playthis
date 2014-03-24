@@ -11,13 +11,13 @@ var PlayListView = Backbone.View.extend({
 		this.results = this.model.items;
 		this.pPageToken = this.model.prevPageToken;
 		this.nPageToken = this.model.nextPageToken;
-		if(this.pPageToken || this.nPageToken) this.addPagination();
 		this.render();
+		if(this.pPageToken || this.nPageToken) this.addPagination();
 
 	},
 	render: function() {
 		this.$el.html(this.template({
-			items: this.results,
+			items: this.results,	
 			totalItems: null,
 			url: this.term
 		}));
@@ -25,14 +25,14 @@ var PlayListView = Backbone.View.extend({
 	},
 	addPagination: function(){
 		var tpl = require('views/templates/pagination');
-		this.$el.find('.pagination-wrap').prepend(tpl({
+		this.$el.find('.pagination-wrap').html(tpl({
 			prevToken: this.pPageToken,
 			nextToken: this.nPageToken
 		}));
 	},
 	goToPaginated: function(e){
-		var page = $(e.currentTarget).attr('data-page');
-        app.navigate("list/" + this.term + '/' + page, true);
+		var token = $(e.currentTarget).attr('data-token');
+        app.navigate("list/" + this.term + '/' + token, true);
 	}
 
 });

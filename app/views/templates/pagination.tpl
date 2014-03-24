@@ -3,7 +3,7 @@
     <li class="pull-left">
         <ul class="pagination">
                 <li class="first-page" data-page="1">
-                    <a class="search-btn"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                    <a class="search-btn" data-token="<%=prevToken%>"><i class="glyphicon glyphicon-chevron-left"></i></a>
                 </li>
             
         </ul>
@@ -12,9 +12,10 @@
     <% if(nextToken) { %>
     <li class="pull-right">
         <ul  class="pagination">
-            <li class="next-page"><a class="search-btn"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+            <li class="next-page"><a class="search-btn" data-token="<%=nextToken%>"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
         </ul>
     </li>
     <% } %>
 </ul>
 
+<p></p>
