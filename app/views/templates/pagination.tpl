@@ -1,13 +1,20 @@
 <ul class="list-unstyled">
+    <% if(prevToken) { %>
     <li class="pull-left">
         <ul class="pagination">
-            <li class="first-page" data-page="1"><a class="search-btn" data-page="<%=(currentPage-1)%>"><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+                <li class="first-page" data-page="1">
+                    <a class="search-btn"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                </li>
+            
         </ul>
     </li>
+    <% } %>
+    <% if(nextToken) { %>
     <li class="pull-right">
         <ul  class="pagination">
-            <li class="next-page"><a class="search-btn" data-page="<%=(currentPage+1)%>"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+            <li class="next-page"><a class="search-btn"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
         </ul>
     </li>
+    <% } %>
 </ul>
 

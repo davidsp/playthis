@@ -18,7 +18,7 @@ var utils = (function() {
     }
     function loadJson(term, view){
         $.ajax({
-            url: 'https://www.googleapis.com/youtube/v3/search?q=' + term + '&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet',
+            url: 'https://www.googleapis.com/youtube/v3/search?q=' + term + '&type=video&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet',
             type: 'POST',
             dataType: 'jsonp',
             complete: function(xhr, textStatus) {
@@ -32,8 +32,10 @@ var utils = (function() {
         });
     }
 	function loadVideo(term, view){
+        console.log(term);
+        console.log(view);
 		$.ajax({
-			url: 'https://www.googleapis.com/youtube/v3/video?q=' + term + '&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet',
+			url: 'https://www.googleapis.com/youtube/v3/videos?id=' + term + '&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet',
 			type: 'POST',
 			dataType: 'jsonp',
 			complete: function(xhr, textStatus) {

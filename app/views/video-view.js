@@ -5,12 +5,13 @@ var PlayListView = Backbone.View.extend({
 	initialize: function(opts) {
 		this.term = this.options.term;
 		this.model = this.options.model;
-		this.result = this.model.data.items[0];
+		console.log(this.model);
 		this.render();
 	},
 	render: function() {
 		this.$el.html(this.template({
-			info:  this.result
+			id:  this.model.items[0].id,
+			title:  this.model.items[0].snippet.title
 		}));
 		return this;		
 	},
