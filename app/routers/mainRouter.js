@@ -4,7 +4,7 @@ var BasicView = require('views/basic-view');
 var playListRouter = Backbone.Router.extend({
 
 	routes: {
-	    "all": "basicInit",
+	    "": "basicInit",
 		//takes the query and does a youtube search
 		"list/:query": "loadList",
 		"list/:query/:token": "loadPaged",
