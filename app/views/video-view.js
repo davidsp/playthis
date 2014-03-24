@@ -7,6 +7,8 @@ var PlayListView = Backbone.View.extend({
 	},
 	initialize: function(opts) {
 		this.render();
+        $('a.video-link').ytchromeless();
+		
 	},
 	render: function() {
 		this.$el.html(this.template({
