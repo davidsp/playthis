@@ -1,15 +1,15 @@
 {
-  "author": "author.email@domain.com",
-  "name": "Project_Name",
+  "author": "davidsp@gmail.com",
+  "name": "playThis",
   "description": "Package description",
-  "version": "1.5.4",
-  "homepage": "",
+  "version": "0.0.2",
+  "homepage": "http://davidsp.github.io/playthis/",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/davidsp/playthis/"
   },
   "engines": {
-    "node": "~0.6.10 || 0.8 || 0.9"
+    "node": "0.8"
   },
   "scripts": {
     "start": "brunch watch --server",
@@ -17,15 +17,10 @@
   },
   "dependencies": {
     "javascript-brunch": ">= 1.0 < 1.6",
-
     "css-brunch": ">= 1.0 < 1.6",
-
-    "uglify-js-brunch": ">= 1.0 < 1.6",
+    "uglify-js-brunch": ">= 1.7.7",
     "clean-css-brunch": ">= 1.0 < 1.6",
-    "less-brunch": "1.5.1",
-    "underscore-brunch": "1.4.0",
-    "underscore-template-brunch": "1.4.4"
-  },
-  "devDependencies": {
+    "less-brunch": "1.7.2",
+    "underscore-brunch": "1.4.0"
   }
 }

@@ -10,8 +10,9 @@ exports.config =
         'js/libs.js': /^vendor/
       order:
         before: [
-          'vendor/javascripts/jquery-1.9.1.js', 
-          'vendor/javascripts/underscore-1.4.4.js'
+          'vendor/javascripts/jquery.js', 
+          'vendor/javascripts/underscore.js'
+          'vendor/javascripts/backbone.js'
         ]
 
     stylesheets:
@@ -23,4 +24,5 @@ exports.config =
         after: ['vendor/styles/helpers.css']
       }
     templates:
+      defaultExtension: 'jst'
       joinTo: 'js/app.js'
