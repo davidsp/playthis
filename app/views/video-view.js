@@ -6,9 +6,7 @@ var PlayListView = Backbone.View.extend({
         'click .btn-back-to-results' : 'goToResults'
     },
     initialize: function(opts) {
-        console.log(this.model);
         this.render();
-        $('a.video-link').ytchromeless();
         
     },
     render: function() {

@@ -1,5 +1,7 @@
 var List = require('views/playlist-view');
 var Video = require('views/video-view');
+var ErrorTemplate = require('views/templates/error-message');
+var conf = require('lib/conf');
 
 var utils = (function() {
     function createView(data,view,term) {
@@ -17,10 +19,16 @@ var utils = (function() {
         }
     }   
     function loadJson(term, view, paged){
-        var url = 'https://www.googleapis.com/youtube/v3/search?q=' + term + '&type=video&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet';
+
+        var url = conf.urls.searchUrl;
+        url = url.replace('{searchTerm}', term);
+        url = url.replace('{userId}', conf.values.userId);
+        url = url.replace('{resultsPerPage}', conf.values.itemsPerPage);
+
         if(paged) url += '&pageToken=' + paged;
+
         $.ajax({
-            url: url ,
+            url: url,
             type: 'POST',
             dataType: 'jsonp',
             complete: function(xhr, textStatus) {
@@ -29,11 +37,16 @@ var utils = (function() {
                 createView(data,view,term);
             },
             error: function(xhr, textStatus, errorThrown) {
-                ///TODO: HANDLE ERRORS
+                newError
             }
         });
     }
     function loadVideo(term, view){
+        var url = conf.urls.searchUrl;
+        url = url.replace('{searchTerm}', term);
+        url = url.replace('{userId}', conf.values.userId);
+        url = url.replace('{resultsPerPage}', conf.values.itemsPerPage);
+        
         $.ajax({
             url: 'https://www.googleapis.com/youtube/v3/videos?id=' + term + '&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet',
             type: 'POST',
