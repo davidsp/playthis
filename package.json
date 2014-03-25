@@ -1,7 +1,7 @@
 {
   "author": "davidsp@gmail.com",
   "name": "playThis",
-  "description": "Package description",
+  "description": "A dead simple backbone example to search and play videos from youtube.",
   "version": "0.0.2",
   "homepage": "http://davidsp.github.io/playthis/",
   "repository": {
