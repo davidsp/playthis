@@ -1,33 +1,52 @@
-var Utils = require('modules/utils');
+var List = require('views/playlist-view');
+var Video = require('views/video-view');
 var BasicView = require('views/basic-view');
 
+
+
 var PlayListRouter = Backbone.Router.extend({
+
     routes: {
-        "": "basicInit",
         //takes the query and does a youtube search
         "list/:query": "loadList",
         "list/:query/:token": "loadPaged",
+
         //takes the id of the video and returns the json data of the video itself
-        "video/:id": "showVideo",
-        
-        //display info about the app
-        "about": "showAbout"
+        "video/:id": "loadVideo",
+    },
+
+    initialize: function () {
+        this.getBasicView();
+    },
+
+    getBasicView: function () {
+        if (!this.basicView) {
+            this.basicView = new BasicView({});
+        }
+        return this.basicView;
     },
     
-    basicInit: function() {
-        new BasicView({});
+    getListView: function () {
+        if (!this.listView) {
+            this.listView = new List({});
+        }
+        return this.listView;
     },
+    getVideoView: function () {
+        if (!this.videoView) {
+            this.videoView = new Video({});
+        }
+        return this.videoView;
+    },
+    
     loadList: function(query){
-        new BasicView({});
-        Utils.loadJson(query,'list');       
+        this.getListView().show(query);
     },
     loadPaged: function(query, page){
-        new BasicView({});
-        Utils.loadJson(query,'list',page);      
+        this.getListView().show(query,page);
     },
-    showVideo: function(id) {
-        new BasicView({});
-        Utils.loadVideo(id,'video');
+    loadVideo: function(id) {
+        this.getVideoView().show(id);
     }
 });
 

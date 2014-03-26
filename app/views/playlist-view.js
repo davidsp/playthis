@@ -1,4 +1,14 @@
 
+var Utils = require('modules/remoteUtils');
+var conf = require('lib/conf');
+
+Backbone.View.prototype.close = function () {
+    if (this.beforeClose) {
+        this.beforeClose();
+    }
+    this.remove();
+    this.unbind();
+};
 var PlayListView = Backbone.View.extend({
     el: '#info',
     template: require('views/templates/videos-list'),
@@ -7,16 +17,27 @@ var PlayListView = Backbone.View.extend({
         'click .search-btn' : 'goToPaginated'
     },
     initialize: function(opts) {
-        this.term = opts.term;
+        //call functions here to prepare the interface
+    },
+    show:function(query,page) {
+        this.term = query;
+        var url = conf.urls.searchUrl;
+        url = url.replace('{searchTerm}', query);
+        url = url.replace('{userId}', conf.values.userId);
+        url = url.replace('{resultsPerPage}', conf.values.itemsPerPage);
+        if(page) url += '&pageToken=' + page;        
+        Utils.getDataJson(url,_.bind(this.postJson, this));
+    },
+    postJson: function(data){
+        this.model = data;
         this.results = this.model.items;
         this.pPageToken = this.model.prevPageToken;
         this.nPageToken = this.model.nextPageToken;
-        this.render();
+        this.renderData();
         if(this.pPageToken || this.nPageToken) this.addPagination();
-
-    },
-    render: function() {
-        this.$el.html(this.template({
+    },    
+    renderData: function() {
+        $('#info').html(this.template({
             items: this.results,    
             totalItems: null,
             url: this.term
@@ -25,16 +46,16 @@ var PlayListView = Backbone.View.extend({
     },
     addPagination: function(){
         var tpl = require('views/templates/pagination');
-        this.$el.find('.pagination-wrap').html(tpl({
+        $('#info').find('.pagination-wrap').html(tpl({
             prevToken: this.pPageToken,
             nextToken: this.nPageToken
         }));
     },
     goToPaginated: function(e){
         var token = $(e.currentTarget).attr('data-token');
-        app.navigate("list/" + this.term + '/' + token, true);
+        app.navigate("list/" + this.term + '/' + token, {trigger: true});
+        e.stopImmediatePropagation();
     }
-
 });
 
 module.exports = PlayListView;
