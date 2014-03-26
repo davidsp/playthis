@@ -90,136 +90,126 @@
   globals.require.list = list;
   globals.require.brunch = true;
 })();
-require.register("main", function(exports, require, module) {
-var	mainRouter = require('routers/mainRouter');
+require.register("lib/conf", function(exports, require, module) {
+var conf = {
+    'urls' :{
+        searchUrl: 'https://www.googleapis.com/youtube/v3/search?q={searchTerm}&type=video&key={userId}&maxResults={resultsPerPage}&order=relevance&part=snippet',
+        videoUrl: 'https://www.googleapis.com/youtube/v3/videos?id={videoId}&key={userId}&maxResults=1&order=relevance&part=snippet',
+    },
+    values :{
+        userId: 'AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA',
+        itemsPerPage: 36
+    },
+    labels :{
+
+    }
+}
+module.exports = conf;
+
+});
+
+;require.register("main", function(exports, require, module) {
+
+var mainRouter = require('routers/main-router');
 
 module.exports = $(function() {
-	var router = new mainRouter();
-	Backbone.history.start({pushState: false});
+    app = new mainRouter();
+    Backbone.history.start({pushState: false});
 });
 });
 
-;require.register("modules/utils", function(exports, require, module) {
-var list = require('views/playlist-view');
-var video = require('views/video-view');
-
-var utils = (function() {
-    function createView(data,view,term) {
-    	if(view === 'video'){
-			new video({
-				model: data,
-				term: term
-			});
-		}
-    	if(view === 'list'){
-			new list({
-				model: data,
-				term: term
-			});
-		}
-    }   
-    function loadJson(term, view, paged){
-        var url = 'https://www.googleapis.com/youtube/v3/search?q=' + term + '&type=video&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet';
-        if(paged) url += '&pageToken=' + paged;
+;require.register("modules/remoteUtils", function(exports, require, module) {
+var remoteUtils = {
+    getDataJson : function(url,success){
         $.ajax({
-            url: url ,
+            url: url,
             type: 'POST',
             dataType: 'jsonp',
-            complete: function(xhr, textStatus) {
-            },
             success: function(data, textStatus, xhr) {
-                createView(data,view,term);
-            },
-            error: function(xhr, textStatus, errorThrown) {
-                return false;
+                success(data);                
             }
         });
     }
-	function loadVideo(term, view){
-		$.ajax({
-			url: 'https://www.googleapis.com/youtube/v3/videos?id=' + term + '&key=AIzaSyC532b2yg91QfoCd2LFibEQj6_5nnBsqjA&maxResults=36&order=relevance&part=snippet',
-			type: 'POST',
-			dataType: 'jsonp',
-			complete: function(xhr, textStatus) {
-			},
-			success: function(data, textStatus, xhr) {
-				createView(data,view,term);
-			},
-			error: function(xhr, textStatus, errorThrown) {
-				return false;
-			}
-		});
-	}
-    return {
-        loadJson: loadJson,
-        loadVideo: loadVideo
-    };
-})();
-
-module.exports = utils;
-
-
+}
+module.exports = remoteUtils;
 });
 
-;require.register("routers/mainRouter", function(exports, require, module) {
-var Utils = require('modules/utils');
+;require.register("routers/main-router", function(exports, require, module) {
+var List = require('views/playlist-view');
+var Video = require('views/video-view');
 var BasicView = require('views/basic-view');
 
-var playListRouter = Backbone.Router.extend({
 
-	routes: {
-	    "": "basicInit",
-		//takes the query and does a youtube search
-		"list/:query": "loadList",
-		"list/:query/:token": "loadPaged",
-		//takes the id of the video and returns the json data of the video itself
-		"video/:id": "showVideo",
-		
-		//display info about the app
-		"about": "showAbout"
-	},
-	
-	basicInit: function() {
-		new BasicView({});
-	},
-	loadList: function(query){
-		new BasicView({});
-		Utils.loadJson(query,'list');		
-	},
-	loadPaged: function(query, page){
-		new BasicView({});
-		Utils.loadJson(query,'list',page);		
-	},
-	showVideo: function(id) {
-		new BasicView({});
-		Utils.loadVideo(id,'video');
-	}
+
+var PlayListRouter = Backbone.Router.extend({
+
+    routes: {
+        //takes the query and does a youtube search
+        "list/:query": "loadList",
+        "list/:query/:token": "loadPaged",
+
+        //takes the id of the video and returns the json data of the video itself
+        "video/:id": "loadVideo",
+    },
+
+    initialize: function () {
+        this.getBasicView();
+    },
+
+    getBasicView: function () {
+        if (!this.basicView) {
+            this.basicView = new BasicView({});
+        }
+        return this.basicView;
+    },
+    
+    getListView: function () {
+        if (!this.listView) {
+            this.listView = new List({});
+        }
+        return this.listView;
+    },
+    getVideoView: function () {
+        if (!this.videoView) {
+            this.videoView = new Video({});
+        }
+        return this.videoView;
+    },
+    
+    loadList: function(query){
+        this.getListView().show(query);
+    },
+    loadPaged: function(query, page){
+        this.getListView().show(query,page);
+    },
+    loadVideo: function(id) {
+        this.getVideoView().show(id);
+    }
 });
 
-app = new playListRouter();
-module.exports = playListRouter;
+module.exports = PlayListRouter;
 });
 
 ;require.register("views/basic-view", function(exports, require, module) {
 
 var BasicView = Backbone.View.extend({
-	el: '#search-form',
-	template: require('views/templates/basic_view'),
-	events : {
-		'submit #search-form' : 'searchVideos'
-	},
-	initialize: function() {
-		this.render();
-	},
-	render: function() {
-		this.$el.html(this.template({}));
-		return this;		
-	},
-	searchVideos: function(e) {
-		var value = $(e.target).find('input').val();
+    el: '#search-form',
+    template: require('views/templates/basic-search'),
+    events : {
+        'submit #search-form' : 'searchVideos'
+    },
+    initialize: function() {
+        this.render();
+    },
+    render: function() {
+        this.$el.html(this.template({}));
+        return this;        
+    },
+    searchVideos: function(e) {
+        var value = $(e.target).find('input').val();
         app.navigate("list/" + value, true);
-		e.preventDefault();
-	}
+        e.preventDefault();
+    }
 });
 
 module.exports = BasicView;
@@ -227,52 +217,83 @@ module.exports = BasicView;
 
 ;require.register("views/playlist-view", function(exports, require, module) {
 
+var Utils = require('modules/remoteUtils');
+var conf = require('lib/conf');
+
+Backbone.View.prototype.close = function () {
+    if (this.beforeClose) {
+        this.beforeClose();
+    }
+    this.remove();
+    this.unbind();
+};
 var PlayListView = Backbone.View.extend({
-	el: '#info',
-	template: require('views/templates/playlist'),
-	events: {
-		'click .video-link' : 'loadVideo',
-		'click .search-btn' : 'goToPaginated'
-	},
-	initialize: function(opts) {
-		this.term = this.options.term;
-		this.results = this.model.items;
-		this.pPageToken = this.model.prevPageToken;
-		this.nPageToken = this.model.nextPageToken;
-		this.render();
-		if(this.pPageToken || this.nPageToken) this.addPagination();
-
-	},
-	render: function() {
-		this.$el.html(this.template({
-			items: this.results,	
-			totalItems: null,
-			url: this.term
-		}));
-		return this;		
-	},
-	addPagination: function(){
-		var tpl = require('views/templates/pagination');
-		this.$el.find('.pagination-wrap').html(tpl({
-			prevToken: this.pPageToken,
-			nextToken: this.nPageToken
-		}));
-	},
-	goToPaginated: function(e){
-		var token = $(e.currentTarget).attr('data-token');
-        app.navigate("list/" + this.term + '/' + token, true);
-	}
-
+    el: '#info',
+    template: require('views/templates/videos-list'),
+    events: {
+        'click .video-link' : 'loadVideo',
+        'click .search-btn' : 'goToPaginated'
+    },
+    initialize: function(opts) {
+        //call functions here to prepare the interface
+    },
+    show:function(query,page) {
+        this.term = query;
+        var url = conf.urls.searchUrl;
+        url = url.replace('{searchTerm}', query);
+        url = url.replace('{userId}', conf.values.userId);
+        url = url.replace('{resultsPerPage}', conf.values.itemsPerPage);
+        if(page) url += '&pageToken=' + page;        
+        Utils.getDataJson(url,_.bind(this.postJson, this));
+    },
+    postJson: function(data){
+        this.model = data;
+        this.results = this.model.items;
+        this.pPageToken = this.model.prevPageToken;
+        this.nPageToken = this.model.nextPageToken;
+        this.renderData();
+        if(this.pPageToken || this.nPageToken) this.addPagination();
+    },    
+    renderData: function() {
+        $('#info').html(this.template({
+            items: this.results,    
+            totalItems: null,
+            url: this.term
+        }));
+        return this;        
+    },
+    addPagination: function(){
+        var tpl = require('views/templates/pagination');
+        $('#info').find('.pagination-wrap').html(tpl({
+            prevToken: this.pPageToken,
+            nextToken: this.nPageToken
+        }));
+    },
+    goToPaginated: function(e){
+        var token = $(e.currentTarget).attr('data-token');
+        app.navigate("list/" + this.term + '/' + token, {trigger: true});
+        e.stopImmediatePropagation();
+    }
 });
 
 module.exports = PlayListView;
 });
 
-;require.register("views/templates/basic_view", function(exports, require, module) {
+;require.register("views/templates/basic-search", function(exports, require, module) {
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='<form id="search-form" class="row form-inline">\r\n    <div class="form-group col-md-8 col-xs-12 col-md-offset-2 input-group">\r\n\t\t<input type="text" id="input-search" class="form-control" placeholder="Search for something">\r\n\t\t<button class="btn btn-primary btn-small span12">GO</button>\r\n    </div>        \r\n</form>\r\n';
+__p+='<form id="search-form" class="row form-inline">\r\n    <div class="form-group col-md-8 col-xs-12 col-md-offset-2 input-group">\r\n        <input type="text" id="input-search" class="form-control" placeholder="Search for something">\r\n        <button class="btn btn-primary btn-small span12">GO</button>\r\n    </div>        \r\n</form>\r\n';
+}
+return __p;
+};
+});
+
+;require.register("views/templates/error-message", function(exports, require, module) {
+module.exports = function(obj){
+var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+with(obj||{}){
+__p+='<p>error message</p>';
 }
 return __p;
 };
@@ -284,9 +305,9 @@ var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments
 with(obj||{}){
 __p+='<ul class="list-unstyled">\r\n    ';
  if(prevToken) { 
-__p+='\r\n    <li class="pull-left">\r\n        <ul class="pagination">\r\n                <li class="first-page" data-page="1">\r\n                    <a class="search-btn" data-token="'+
+__p+='\r\n    <li class="pull-left">\r\n        <ul class="pagination">\r\n            <li class="first-page" data-page="1">\r\n                <a class="search-btn" data-token="'+
 ((__t=(prevToken))==null?'':__t)+
-'"><i class="glyphicon glyphicon-chevron-left"></i></a>\r\n                </li>\r\n            \r\n        </ul>\r\n    </li>\r\n    ';
+'"><i class="glyphicon glyphicon-chevron-left"></i></a>\r\n            </li>\r\n        </ul>\r\n    </li>\r\n    ';
  } 
 __p+='\r\n    ';
  if(nextToken) { 
@@ -300,94 +321,83 @@ return __p;
 };
 });
 
-;require.register("views/templates/playlist", function(exports, require, module) {
-module.exports = function(obj){
-var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
-with(obj||{}){
-__p+='\t<h3><strong>'+
-((__t=(totalItems ))==null?'':__t)+
-'</strong> results after searching for <strong>'+
-((__t=(url))==null?'':__t)+
-'</strong></h3>\r\n    <nav class="pagination-wrap"></nav>\r\n    <section class="row list-items">\r\n    ';
- 
-    var results = items;
-    for( var i in results) { 
-__p+='\r\n\t    <div class="col-xs-12 col-sm-6 col-md-3">\r\n\t        <p><a href="#video/'+
-((__t=(results[i].id.videoId))==null?'':__t)+
-'" class="video-link" data-id="results[i].id.videoId"><img src="'+
-((__t=( results[i].snippet.thumbnails.high.url ))==null?'':__t)+
-'"></a></p>\r\n\t        <p><a href="#video/'+
-((__t=(results[i].id.videoId))==null?'':__t)+
-'" class="video-link" data-id="results[i].id.videoId">'+
-((__t=( results[i].snippet.title ))==null?'':__t)+
-'</a></p>\r\n\t    </div>\r\n    ';
- } 
-__p+='\r\n    </section>\r\n    <nav class="pagination-wrap"></nav>    \r\n';
-}
-return __p;
-};
-});
-
-;require.register("views/templates/videoItem", function(exports, require, module) {
+;require.register("views/templates/video-item", function(exports, require, module) {
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='<div class="row">\r\n    <div id="video-player" class="col-sm-offset-1 col-md-offset-2 col-xs-12 col-sm-10 col-md-8">\r\n        <p id="back-to-results">\r\n            <a class="btn-back-to-results btn btn-success btn-xs"><i class="glyphicon glyphicon-chevron-left with-icon"></i>Back to the search results</a>\r\n        </p>\r\n        <h3>'+
 ((__t=(title))==null?'':__t)+
-'</h3>\r\n         <a class="video-link" href="http://www.youtube.com/watch?v='+
+'</h3>\r\n        <iframe src="//www.youtube.com/embed/'+
 ((__t=(id))==null?'':__t)+
-'">'+
-((__t=(title))==null?'':__t)+
-'</a>\r\n    </div>\r\n</div>';
+'" frameborder="0" allowfullscreen></iframe>\r\n    </div>\r\n</div>';
 }
 return __p;
 };
 });
 
-;require.register("views/v-playlist", function(exports, require, module) {
-
-var playListView = Backbone.View.extend({
-	el: 'body',
-	template: require('views/templates/playlist'),
-	events: {},
-	initialize: function() {
-		this.render();
-	},
-	render: function() {
-		this.$el.html(this.template({
-			url: this.term
-		}));
-		return this;		
-	}
-
-});
-
-module.exports = playListView;
+;require.register("views/templates/videos-list", function(exports, require, module) {
+module.exports = function(obj){
+var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
+with(obj||{}){
+__p+='<div id="list-videos">\r\n<h3><strong>'+
+((__t=(totalItems ))==null?'':__t)+
+'</strong> results after searching for <strong>'+
+((__t=(url))==null?'':__t)+
+'</strong></h3>\r\n<nav class="pagination-wrap"></nav>\r\n<section class="row list-items">\r\n';
+ 
+var results = items;
+for( var i in results) { 
+__p+='\r\n    <div class="col-xs-12 col-sm-6 col-md-3">\r\n        <p><a href="#video/'+
+((__t=(results[i].id.videoId))==null?'':__t)+
+'" class="video-link"><img src="'+
+((__t=( results[i].snippet.thumbnails.high.url ))==null?'':__t)+
+'"></a></p>\r\n        <p><a href="#video/'+
+((__t=(results[i].id.videoId))==null?'':__t)+
+'" class="video-link">'+
+((__t=( results[i].snippet.title ))==null?'':__t)+
+'</a></p>\r\n    </div>\r\n';
+ } 
+__p+='\r\n</section>\r\n<nav class="pagination-wrap"></nav>    \r\n</div>';
+}
+return __p;
+};
 });
 
 ;require.register("views/video-view", function(exports, require, module) {
 
+var Utils = require('modules/remoteUtils');
+var conf = require('lib/conf');
+
 var PlayListView = Backbone.View.extend({
-	el: '#info',
-	template: require('views/templates/videoItem'),
-	events: {
-		'click .btn-back-to-results' : 'goToResults'
-	},
-	initialize: function(opts) {
-		this.render();
-        $('a.video-link').ytchromeless();
-		
-	},
-	render: function() {
-		this.$el.html(this.template({
-			id: this.options.model.items[0].id,
-			title: this.options.model.items[0].snippet.title
-		}));
-		return this;		
-	},
-	goToResults: function(e) {
-		Backbone.history.history.back();
-	}
+    el: '#info',
+    template: require('views/templates/video-item'),
+    events: {
+        'click .btn-back-to-results' : 'goToResults'
+    },
+    initialize: function(opts) {
+    },
+    show: function(id) {
+        var url = conf.urls.videoUrl;
+        url = url.replace('{videoId}', id);
+        url = url.replace('{userId}', conf.values.userId);
+        Utils.getDataJson(url,_.bind(this.postJson, this));        
+    },
+    postJson: function(data){
+        this.model = data;        
+        this.id = this.model.items[0].id;
+        this.title = this.model.items[0].snippet.title;
+        this.render();
+    },
+    render: function() {
+        this.$el.html(this.template({
+            id: this.id,
+            title: this.title
+        }));
+        return this;        
+    },
+    goToResults: function(e) {
+        Backbone.history.history.back();
+    }
 });
 
 module.exports = PlayListView;
