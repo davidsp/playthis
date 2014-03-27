@@ -2,13 +2,7 @@
 var Utils = require('modules/remoteUtils');
 var conf = require('lib/conf');
 
-Backbone.View.prototype.close = function () {
-    if (this.beforeClose) {
-        this.beforeClose();
-    }
-    this.remove();
-    this.unbind();
-};
+
 var PlayListView = Backbone.View.extend({
     el: '#info',
     template: require('views/templates/videos-list'),
